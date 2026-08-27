@@ -55,8 +55,12 @@ app.use('/', route);
 
 const PORT = process.env.PORT || 2408;
 
-connectDb().then(() => {
-  app.listen(PORT, () => {
-    console.log(`PathSeeker Server Running on port ${PORT}`);
+if (require.main === module) {
+  connectDb().then(() => {
+    app.listen(PORT, () => {
+      console.log(`PathSeeker Server Running on port ${PORT}`);
+    });
   });
-});
+}
+
+module.exports = app;
